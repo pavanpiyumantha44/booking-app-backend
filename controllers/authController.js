@@ -15,7 +15,7 @@ const login = async(req,res)=>{
             return res.status(404).json({success:false,error:"Invalid Password!"})
         }
 
-        const token = jwt.sign({_id:user._id,email:user.email},process.env.JWT_KEY,{expiresIn:"1d"});
+        const token = jwt.sign({_id:user._id,email:user.email},process.env.JWT_KEY,{expiresIn:"10d"});
         res.status(200).json({success:true, token, user:{_id:user._id,name:user.name,email:user.email}})
     } catch (error) {
         res.status(500).json({success:false,error:error.message})

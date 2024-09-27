@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import authRouter from './routes/auth.js'
+import organizationRouter from './routes/organization.js'
 import connectToDatabase from './db/db.js';
 
 
@@ -14,7 +15,8 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
-app.use('/api/auth/',authRouter);
+app.use('/api/auth',authRouter);
+app.use('/api/organization',organizationRouter);
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT,()=>{
