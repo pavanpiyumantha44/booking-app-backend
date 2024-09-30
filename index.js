@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+dotenv.config();
 import cors from 'cors'
 import authRouter from './routes/auth.js'
 import organizationRouter from './routes/organization.js'
@@ -10,7 +11,6 @@ const con = connectToDatabase();
 if(con){
     console.log('db connected!!');
 }
-dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json())
