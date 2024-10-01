@@ -16,10 +16,19 @@ const addOrganization = async(req,res)=>{
     }
 }
 
-const getOrganization = async(req,res)=>{
+const getOrganizations = async(req,res)=>{
     try {
         const organizations = await Organization.find();
         return res.status(200).json({success:true, organizations})
+    } catch (error) {
+        return res.status(500).json({success:false,error:"Organization Server Error"})
+    }
+}
+const getOrganization = async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const organization = await Organization.findById({_id:id});
+        return res.status(200).json({success:true, organization})
     } catch (error) {
         return res.status(500).json({success:false,error:"Organization Server Error"})
     }
@@ -34,4 +43,4 @@ const deleteOrganization = async(req,res)=>{
     }
 }
 
-export {addOrganization,getOrganization,deleteOrganization};
+export {addOrganization,getOrganizations,getOrganization,deleteOrganization};
