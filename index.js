@@ -5,6 +5,7 @@ import cors from 'cors'
 import authRouter from './routes/auth.js'
 import organizationRouter from './routes/organization.js'
 import serviceRouter from './routes/service.js'
+import serviceDetailRouter from './routes/serviceDetail.js'
 import connectToDatabase from './db/db.js';
 
 
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use('/api/auth',authRouter);
 app.use('/api/organization',organizationRouter);
 app.use('/api/service',serviceRouter);
+app.use('/api/serviceDetail/',serviceDetailRouter);
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT,()=>{
