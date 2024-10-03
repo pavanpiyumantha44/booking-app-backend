@@ -30,9 +30,25 @@ const getOrganization = async(req,res)=>{
         const organization = await Organization.findById({_id:id});
         return res.status(200).json({success:true, organization})
     } catch (error) {
-        return res.status(500).json({success:false,error:"Organization Server Error"})
+        return res.status(500).json({success:false,error:"Get Organization Server Error"})
     }
 }
+const updateOrganization = async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const {name,email,phone,address} = req.body
+        const updateOrg = await Organization.findByIdAndUpdate({_id:id},{
+            name,
+            email,
+            phone,
+            address
+        });
+        return res.status(200).json({success:true, updateOrg})
+    } catch (error) {
+        return res.status(500).json({success:false,error:"Update Organization Server Error"})
+    }
+}
+
 const deleteOrganization = async(req,res)=>{
     try {
         const {id} = req.params;
@@ -43,4 +59,4 @@ const deleteOrganization = async(req,res)=>{
     }
 }
 
-export {addOrganization,getOrganizations,getOrganization,deleteOrganization};
+export {addOrganization,getOrganizations,getOrganization,deleteOrganization,updateOrganization};
