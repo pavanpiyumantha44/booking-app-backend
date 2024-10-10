@@ -4,7 +4,6 @@ import Service from '../models/Service.js';
 const getServices = async(req,res)=>{
     try {
         const services = await Service.find();
-        console.log(services);
         return res.status(200).json({success:true, services})
     } catch (error) {
         return res.status(500).json({success:false,error:"Service Server Error"})

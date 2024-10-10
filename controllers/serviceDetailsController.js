@@ -1,6 +1,16 @@
 import ServiceDetail from "../models/ServiceDetail.js";
 import Service from "../models/Service.js";
 
+
+const getAllServiceDetails = async(req,res)=>{
+  try {
+      const serviceDetails = await ServiceDetail.find().populate('serviceId', 'name');
+      return res.status(200).json({success:true, serviceDetails})
+  } catch (error) {
+      return res.status(500).json({success:false,error:"Service Server Error"})
+  }
+}
+
 const getServiceDetails = async (req, res) => {
     const { id } = req.params;
     
@@ -36,4 +46,4 @@ const addServiceDetails = async (req, res) => {
   };
   
 
-export {addServiceDetails,getServiceDetails};
+export {addServiceDetails,getServiceDetails,getAllServiceDetails};
