@@ -15,7 +15,7 @@ if(con){
 }
 const app = express();
 app.use(cors({
-    origin:'http://localhost:3000',
+    origin:'https://booking-app-client-coral.vercel.app',
     credentials:true
 }));
 app.use(express.json())
