@@ -4,6 +4,7 @@ import User from '../models/User.js';
 const verifyUser = async(req,res,next)=>{
     try {
         const token = req.headers.authorization.split(' ')[1];
+        console.log(token);
         if(!token){
             console.log("Token not Provided");
             return res.status(404).json({success:false,error:"Token Not Provided"})
@@ -23,7 +24,7 @@ const verifyUser = async(req,res,next)=>{
         next()
     } catch (error) {
         console.log("Server Error");
-        return res.status(500).json({success:false,error:"Server Error"})
+        //return res.status(500).json({success:false,error:"Server Error"})
     }
 }
 
