@@ -9,7 +9,7 @@ const verifyUser = async(req,res,next)=>{
             console.log("Token not Provided");
             return res.status(404).json({success:false,error:"Token Not Provided"})
         }
-        const decoded = jwt.verify(token,'jwtSecretKeyfffasdSsdfj342ds32sdfJSksdfjd3rdjkd');
+        const decoded = jwt.verify(token,process.env.JWT_KEY);
         if(!decoded){
             console.log("Token not Valid");
             return res.status(404).json({success:false,error:"Token Not Valid"})
