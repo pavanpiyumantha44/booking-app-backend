@@ -17,7 +17,7 @@ const app = express();
 const frontendUrl = process.env.FRONTEND_URL;
 
 app.use(cors({
-    origin:frontendUrl,
+    origin:'https://booking-app-client-one.vercel.app',
     credentials:true
 }));
 app.use(express.json())
