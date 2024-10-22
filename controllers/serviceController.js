@@ -22,10 +22,9 @@ const getOrgServices = async(req,res)=>{
 
 const addService = async(req,res)=>{
     try {
-        const {name,cost,description,orgId} = req.body;
+        const {name,description,orgId} = req.body;
         const newService = new Service({
             name,
-            cost,
             description,
             orgId
         })

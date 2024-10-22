@@ -26,11 +26,11 @@ const getServiceDetails = async (req, res) => {
 
 const addServiceDetails = async (req, res) => {
     try {
-      const { providedService, description, isAvailable, serviceId, orgId } = req.body;
-      
+      const { providedService, description, cost, isAvailable, serviceId, orgId } = req.body;
       const newServiceDetails = new ServiceDetail({
         providedService,
         description,
+        cost,
         isAvailable,
         serviceId, 
         orgId
