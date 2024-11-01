@@ -2,12 +2,14 @@ import Organization from "../models/Organization.js";
 
 const addOrganization = async(req,res)=>{
     try {
-        const {name,email,phone,address} = req.body;
+        const {name,email,phone,address,startingTime,closingTime} = req.body;
         const newOrganization = new Organization({
             name,
             email,
             phone,
-            address
+            address,
+            startingTime,
+            closingTime
         })
         await newOrganization.save();
         return res.status(200).json({success:true, organization:newOrganization});
@@ -36,12 +38,14 @@ const getOrganization = async(req,res)=>{
 const updateOrganization = async(req,res)=>{
     try {
         const {id} = req.params;
-        const {name,email,phone,address} = req.body
+        const {name,email,phone,address,startingTime,closingTime} = req.body
         const updateOrg = await Organization.findByIdAndUpdate({_id:id},{
             name,
             email,
             phone,
-            address
+            address,
+            startingTime,
+            closingTime
         });
         return res.status(200).json({success:true, updateOrg})
     } catch (error) {

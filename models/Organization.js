@@ -5,6 +5,8 @@ const organizationSchema = new mongoose.Schema({
     email:{type:String,required:true},
     phone:{type:String,required:true},
     address:{type:String,required:true},
+    startingTime:{type:Number},
+    closingTime:{type:Number},
     createdAt:{type:Date,default:Date.now},
     modifiedAt:{type:Date,default:Date.now},
 })
