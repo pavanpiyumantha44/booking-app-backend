@@ -12,28 +12,29 @@ const getAllServiceDetails = async(req,res)=>{
 }
 
 const getServiceDetails = async (req, res) => {
-    const { id } = req.params;
-    
-    try {
-      // Find service details and populate the serviceId field to get the associated service data
-      const serviceDetails = await ServiceDetail.find({ orgId: id }).populate('serviceId', 'name'); // Only populate the 'name' field of the Service model
+  const { id } = req.params;
   
-      return res.status(200).json({ success: true, serviceDetails });
-    } catch (error) {
-      return res.status(500).json({ success: false, error: "Service Details Server Error" });
-    }
-  };
+  try {
+    // Find service details by the serviceId field
+    const serviceDetails = await ServiceDetail.find({ serviceId: id });
+    
+    return res.status(200).json({ success: true, serviceDetails });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: "Service Details Server Error" });
+  }
+};
+
 
 const addServiceDetails = async (req, res) => {
     try {
-      const { providedService, description, cost, isAvailable, serviceId, orgId } = req.body;
+      const { providedService, description, localCost, foreignCost, isAvailable, serviceId} = req.body;
       const newServiceDetails = new ServiceDetail({
         providedService,
         description,
-        cost,
+        localCost,
+        foreignCost,
         isAvailable,
         serviceId, 
-        orgId
       });
       
       // Save the instance

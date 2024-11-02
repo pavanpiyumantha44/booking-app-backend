@@ -17,8 +17,8 @@ if(con){
     console.log('db connected!!');
 }
 const app = express();
-const frontendUrl = process.env.FRONTEND_URL;
-//const frontendUrl = 'https://booking-app-client-one.vercel.app';
+//const frontendUrl = process.env.FRONTEND_URL;
+const frontendUrl = 'https://booking-app-client-one.vercel.app';
 
 app.use(cors({
     origin:frontendUrl,
