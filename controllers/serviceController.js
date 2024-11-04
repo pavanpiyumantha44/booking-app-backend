@@ -30,11 +30,11 @@ const getOrgServices = async(req,res)=>{
 
 const addService = async(req,res)=>{
     try {
-        const {name,description,orgId} = req.body;
+        const {name,description,id} = req.body;
         const newService = new Service({
             name,
             description,
-            orgId
+            orgId:id
         })
         await newService.save();
         return res.status(200).json({success:true, service:newService});
