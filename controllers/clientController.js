@@ -3,12 +3,12 @@ import Client from '../models/Client.js'
 
 const addClient = async(req,res)=>{
     try {
-        const {name,email,phone,isSrilankan} = req.body;
+        const {name,email,phone,isSlResident} = req.body;
         const newClient = new Client({
             name,
             email,
             phone,
-            isSrilankan
+            isSrilankan:isSlResident
         })
         await newClient.save();
         return res.status(200).json({success:true, client:newClient});

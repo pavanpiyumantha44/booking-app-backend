@@ -2,14 +2,16 @@ import Booking from "../models/Booking.js";
 
 const addBooking = async(req,res)=>{
     try {
-        const {startDttm,endDttm,phone,isTennisEquipmentRequired,isCoachingSessionRequired,totalCost,clientId} = req.body;
+        const {startDttm,endDttm,isTennisEquipmentRequired,isCoachingSessionRequired,isFloodLightsRequired,totalCost,clientId,serviceId} = req.body;
         const newBooking = new Booking({
             startDttm,
             endDttm,
             isTennisEquipmentRequired,
             isCoachingSessionRequired,
+            isFloodLightsRequired,
             totalCost,
-            clientId
+            clientId,
+            serviceId
         })
         await newBooking.save();
         return res.status(200).json({success:true, Booking:newBooking});
@@ -19,7 +21,7 @@ const addBooking = async(req,res)=>{
 }
 const getBookings = async(req,res)=>{
     try {
-        const bookings = await booking.find();
+        const bookings = await Booking.find().populate('clientId', 'name email phone').populate('serviceId', 'providedService');
         return res.status(200).json({success:true, bookings})
     } catch (error) {
         return res.status(500).json({success:false,error:"Get Bookings Server Error"})
